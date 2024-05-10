@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const loader = document.querySelector('.gallery__loader');
     const gallery = document.querySelector('.gallery__pics');
     const url = 'https://api.thecatapi.com/v1/images/search?limit=10';
+    const btn_up = document.querySelector('.gallery__btn-up');
 
     loadButton.addEventListener('click', async function (event) {
         event.preventDefault();
@@ -28,4 +29,20 @@ document.addEventListener('DOMContentLoaded', function () {
             loader.style.display = 'none';
         }
     });
+
+    btn_up.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    function checkScroll() {
+        if (window.scrollY > window.innerHeight / 2) {
+            btn_up.style.display = 'block';
+        } else {
+            btn_up.style.display = 'none';
+        }
+    }
+    document.addEventListener('scroll', checkScroll);
 });
